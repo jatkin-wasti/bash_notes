@@ -14,9 +14,28 @@
 - Default for both of them is 10 lines
 ### Sort
 - Shows a sorted version of the data (by default it sorts alphabetically)
-## Permissions
 
-agergag
+## Permissions
+- Define what a user or process can do to a file or folder e.g. write to it,
+read from it etc.
+- To change file permissions we use the `chmod` command followed by the permission level and file we would like to edit.
+- `chmod 666 example_file.txt`
+
+| Value | Meaning                                                                                          |
+| ----- | ------------------------------------------------------------------------------------------------ |
+| 777   | No restrictions, anyone can do anything. Not advised.                                            |
+| 755   | The file's owner may read, write and execute the file. All others may read and execute the file. |
+| 700   | The file's owner may read, write and execute the file. Nobody else has any rights.               |
+| 666   | All users may read and write the file                                                            |
+| 644   | The owner may read and write a file while all others may only read the file                      |
+| 600   | The owner may read and write a file, all others have no rights                                   |
+
+- You can also change permissions using flag names.
+- For example: `chmod +x <filename>`
+- Adding `+x` will make the file executable
+- Otherflags available:
+  - `+r` gives read rights
+  - `+w` gives write rights
 
 ## Streams and Redirects
 ### Streams
@@ -62,5 +81,30 @@ symbols `2>` and `2>>` as it is an output data stream
 - Can differentiate between stdout and stderr by their differing stream id's
 - This can be seen in the above example, as 2 is the stream id for stderr
 - An example of it being used is below, which will redirect the error stream
-into the error.txt file. 
+into the error.txt file.
 `ls fffff 2> error.txt`
+
+## Wildcards
+- Characters that act in place of other characters
+- ``*`` can be used in place of any sequence of characters
+- ``?`` can be used to search for a fixed number of characters, each ?
+symbolises each character
+- ``[]`` can be used to match the characters of a defined range or group of
+characters
+
+
+## Greps and ps aux
+- Grep is used to search for string/text from a file or from the output of
+another command
+- It returns the lines where it finds a match
+- We can also use grep to return the lines where it doesn't match, by using
+``grep -v```
+- ``ps`` shows a list of processes and their process id's
+- ``ps - a`` shows the processes from all users
+- ``ps -u`` shows the processes alongside the users
+- ``ps -x`` shows the processes not attached to the current terminal
+- ``ps aux`` shows the processes that are running regardless from where they
+have been executed
+- Can kill a process with `kill {process id}`
+- Can make a process run in the background with `&` e.g. `{process start} &` so
+that you can still use the terminal
