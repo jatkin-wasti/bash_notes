@@ -58,7 +58,17 @@ read from it etc.
 - Otherflags available:
   - `+r` gives read rights
   - `+w` gives write rights
+- The three values are for the different groups (user, group, and others) e.g.
+a user can have different permissions to a group
+- User is the person that owns the file
+- A group could be admins, users, wheel etc.
+- Others covers everyone not already included in the user or group
 - Can alias the u (user), g (group), o (other)
+### Root user
+- Super user,
+- Can escalate privileges using the `sudo` command
+- Can also make user `sudo users` list in the system to make other users a super
+user
 
 ## Streams and Redirects
 ### Streams
@@ -106,6 +116,10 @@ symbols `2>` and `2>>` as it is an output data stream
 - An example of it being used is below, which will redirect the error stream
 into the error.txt file.
 `ls fffff 2> error.txt`
+- If you attempt to redirect an output of a command that doesn't cause an error
+with `2>` then the redirect will simply not go through and the first command
+will output the result normally
+- Can use `2>&1` to redirect both the error and the result to the file
 
 ## Wildcards
 - Characters that act in place of other characters
@@ -132,5 +146,25 @@ another command
 - ``ps aux`` shows the processes that are running regardless from where they
 have been executed
 - Can kill a process with `kill {process id}`
+  - `kill -9` will kill a process and cannot be blocked
 - Can make a process run in the background with `&` e.g. `{process start} &` so
 that you can still use the terminal
+
+## Bash and Bash Variables
+### Define Dynamically
+- `HELLO=THIS_AMAZING_STRING`
+- call the variable with a `$`
+  - `echo $HELLO`
+- Only available on the current process (the terminal that is open)
+### Environment Variables
+- If you want a variable to exit every time you open the terminal, you need to
+add it to a path that is read on start up
+  - This can be in .bashrc or .profile
+  - Don't want to add to both as that isn't DRY, therefore make .profile look
+  and read .bashrc and then only write in .bashrc
+### Bash Path
+- Group of files that are read and executed on start up
+- This makes it a good location to set variables that can be used by child
+processes
+- To be used by child processes, it's useful to `export` the variable in the
+path
