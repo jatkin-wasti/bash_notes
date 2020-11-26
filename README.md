@@ -1,5 +1,23 @@
 # BASH notes
-
+## Linux
+### Gottcha's
+- Monitors, keyboards, directories ----> they are all files!
+- Linux doesn't care about the extension e.g. you can rename image.png to
+image.txt and it will still be an image
+  - However, software WILL care about the extension
+- Case sensitive
+- Avoid naming things with spaces unless you want to escape every time
+```bash
+mkdir my documents
+mkdir "my documents"
+cd my\ documents/
+```
+- Hidden files and folders with `.` at the beginning of the name
+  - Can check for hidden files with `ls -a` or `ll -a`
+- rm to remove
+  - rm -rf directories
+- flags for bash commands are options i.e. -a, -u
+  - check options using `man {command}`
 ## Head, Tail, Sort
 ### Head
 -Head displays the first X lines of a file
@@ -20,6 +38,9 @@
 read from it etc.
 - To change file permissions we use the `chmod` command followed by the permission level and file we would like to edit.
 - `chmod 666 example_file.txt`
+- Permissions use binary, execute is 1, write is 2, read is 4
+  - Can add these together e.g. read + write would be 6, all of them together
+  would be 7 etc.
 
 | Value | Meaning                                                                                          |
 | ----- | ------------------------------------------------------------------------------------------------ |
@@ -33,9 +54,11 @@ read from it etc.
 - You can also change permissions using flag names.
 - For example: `chmod +x <filename>`
 - Adding `+x` will make the file executable
+- Adding `-w` will remove the write permissions
 - Otherflags available:
   - `+r` gives read rights
   - `+w` gives write rights
+- Can alias the u (user), g (group), o (other)
 
 ## Streams and Redirects
 ### Streams
@@ -87,11 +110,14 @@ into the error.txt file.
 ## Wildcards
 - Characters that act in place of other characters
 - ``*`` can be used in place of any sequence of characters
+  - `*md` would find any file ending in md
 - ``?`` can be used to search for a fixed number of characters, each ?
 symbolises each character
+  - ``???.txt`` will find files with a 3 character long name
 - ``[]`` can be used to match the characters of a defined range or group of
 characters
-
+  - ``[a-d].txt`` will find files with names that only include characters
+  between a and d e.g. it could find bad.txt
 
 ## Greps and ps aux
 - Grep is used to search for string/text from a file or from the output of
@@ -100,7 +126,7 @@ another command
 - We can also use grep to return the lines where it doesn't match, by using
 ``grep -v```
 - ``ps`` shows a list of processes and their process id's
-- ``ps - a`` shows the processes from all users
+- ``ps -a`` shows the processes from all users
 - ``ps -u`` shows the processes alongside the users
 - ``ps -x`` shows the processes not attached to the current terminal
 - ``ps aux`` shows the processes that are running regardless from where they
